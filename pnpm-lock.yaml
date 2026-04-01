@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      kiso.css:
+        specifier: ^1.2.4
+        version: 1.2.4
       next:
         specifier: 16.2.1
         version: 16.2.1(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -1911,6 +1914,9 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
+
+  kiso.css@1.2.4:
+    resolution: {integrity: sha512-svHtRExh51oRPH9GQ/meutMUeztyFyJHH2YHt7If7fdvOyKImTCGNGIu48BudLouwcMldPz+80R7YBJJRy9aJQ==}
 
   kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
@@ -4778,6 +4784,8 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
+
+  kiso.css@1.2.4: {}
 
   kleur@4.1.5: {}
 
