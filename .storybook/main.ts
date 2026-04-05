@@ -1,14 +1,17 @@
-import type { StorybookConfig } from '@storybook/nextjs-vite';
+import { defineMain } from '@storybook/nextjs-vite/node';
 
-const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+// @keep-sorted
+export default defineMain({
   addons: [
     '@chromatic-com/storybook',
     '@storybook/addon-vitest',
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
   ],
+  features: {
+    experimentalRSC: true,
+  },
   framework: '@storybook/nextjs-vite',
   staticDirs: ['../public'],
-};
-export default config;
+  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+});

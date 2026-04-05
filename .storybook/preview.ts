@@ -1,7 +1,20 @@
-import type { Preview } from '@storybook/nextjs-vite';
+import addonA11y from '@storybook/addon-a11y';
+import { definePreview } from '@storybook/nextjs-vite';
+import { INITIAL_VIEWPORTS } from 'storybook/viewport';
 
-const preview: Preview = {
+import '../src/app/globals.css';
+
+// @keep-sorted
+export default definePreview({
+  addons: [addonA11y()],
+  // @keep-sorted
   parameters: {
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'todo',
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -9,14 +22,46 @@ const preview: Preview = {
       },
     },
 
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo',
+    viewport: {
+      options: {
+        xs: {
+          name: 'Extra Small',
+          styles: {
+            width: '375px',
+            height: '100%',
+          },
+        },
+        sm: {
+          name: 'Small',
+          styles: {
+            width: '640px',
+            height: '100%',
+          },
+        },
+        md: {
+          name: 'Medium',
+          styles: {
+            width: '768px',
+            height: '100%',
+          },
+        },
+        lg: {
+          name: 'Large',
+          styles: {
+            width: '1024px',
+            height: '100%',
+          },
+        },
+        xl: {
+          name: 'Extra Large',
+          styles: {
+            width: '1280px',
+            height: '100%',
+          },
+        },
+        ...INITIAL_VIEWPORTS,
+      },
     },
   },
-};
-
-export default preview;
+});
 
