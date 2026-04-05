@@ -36,7 +36,8 @@
         { pkgs, system }:
         {
           default = pkgs.mkShell {
-            packages = [
+            packages = with pkgs; [
+              gitleaks
               nix-vite-plus.packages.${system}.vp
             ];
           };
