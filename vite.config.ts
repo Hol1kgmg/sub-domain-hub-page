@@ -3,6 +3,7 @@ import { defineConfig } from 'vite-plus';
 export default defineConfig({
   staged: {
     '*': 'vp check --fix',
+    '*.{html,jsx,tsx}': 'markuplint "src/**/*.{html,jsx,tsx}" --fix --problem-only',
   },
   fmt: {
     semi: true,
