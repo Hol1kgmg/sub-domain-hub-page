@@ -1,6 +1,7 @@
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTs from 'eslint-config-next/typescript';
 import command from 'eslint-plugin-command/config';
+import storybook from 'eslint-plugin-storybook';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 const eslintConfig = defineConfig([
@@ -16,6 +17,7 @@ const eslintConfig = defineConfig([
     'styled-system',
   ]),
   command(),
+  ...storybook.configs['flat/recommended'],
 ]);
 
 export default eslintConfig;
