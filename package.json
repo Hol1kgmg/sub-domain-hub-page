@@ -17,7 +17,8 @@
     "test:browser": "vp test --project=browser",
     "test:storybook": "vp test --project=storybook",
     "storybook": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "analyze": "next experimental-analyze"
   },
   "dependencies": {
     "kiso.css": "^1.2.4",
