@@ -16,7 +16,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html suppressHydrationWarning lang="ja">
       <body>
         <MswProvider>
           <ThemeProvider>{children}</ThemeProvider>

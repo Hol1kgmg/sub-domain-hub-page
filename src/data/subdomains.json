@@ -1,0 +1,16 @@
+[
+  {
+    "id": "terminal-profile",
+    "name": "Terminal Profile",
+    "url": "https://terminal.hol1kgmg.com",
+    "category": "dev",
+    "screenshot": "/screenshots/terminal-profile.jpg"
+  },
+  {
+    "id": "braille-finder",
+    "name": "Braille Finder",
+    "url": "https://braille-finder.hol1kgmg.com",
+    "category": "tool",
+    "screenshot": "/screenshots/braille-finder.jpg"
+  }
+]

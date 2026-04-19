@@ -1,50 +1,37 @@
-import Image from 'next/image';
+import { css } from '../../styled-system/css';
+import { grid } from '../../styled-system/patterns';
+import { SubdomainCard } from '../components/SubdomainCard';
+import { subdomains } from '../data/subdomains';
 
 export default function Home() {
   return (
-    <div>
-      <main>
-        <Image priority alt="Next.js logo" height={20} src="/next.svg" width={100} />
-        <div>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{' '}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Templates
-            </a>{' '}
-            or the{' '}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Learning
-            </a>{' '}
-            center.
-          </p>
-        </div>
-        <div>
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Image alt="Vercel logomark" height={16} src="/vercel.svg" width={16} />
-            Deploy Now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main
+      className={css({
+        maxWidth: '7xl',
+        marginX: 'auto',
+        padding: '8',
+      })}
+    >
+      <h1
+        className={css({
+          fontSize: '2xl',
+          fontWeight: 'bold',
+          marginBottom: '8',
+          color: 'text',
+        })}
+      >
+        Subdomain List
+      </h1>
+      <div
+        className={grid({
+          columns: { base: 1, sm: 2, lg: 3 },
+          gap: '4',
+        })}
+      >
+        {subdomains.map((subdomain) => (
+          <SubdomainCard key={subdomain.id} subdomain={subdomain} />
+        ))}
+      </div>
+    </main>
   );
 }
