@@ -9,7 +9,6 @@
     "binding": "ASSETS",
   },
   "images": {
-    // Enable Next.js Image Optimization
     "binding": "IMAGES",
   },
 }
