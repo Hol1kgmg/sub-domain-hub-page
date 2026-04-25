@@ -1,14 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "sub-domain-hub-page",
-  "main": ".open-next/worker.js",
+  "pages_build_output_dir": ".open-next/assets",
   "compatibility_date": "2025-04-01",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
-  },
-  "images": {
-    "binding": "IMAGES"
-  }
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"]
 }
