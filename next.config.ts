@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
+  output: 'export',
   reactCompiler: true,
   typedRoutes: true,
 };
