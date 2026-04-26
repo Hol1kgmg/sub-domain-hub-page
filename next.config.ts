@@ -3,6 +3,9 @@ import type { NextConfig } from 'next';
 // @keep-sorted
 const nextConfig: NextConfig = {
   /* config options here */
+  images: {
+    unoptimized: true,
+  },
   // @keep-sorted
   logging: {
     browserToTerminal: true,
