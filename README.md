@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# sub-domain-hub-page
+
+`hol1kgmg.com` 配下で運用しているサブドメイン一覧を表示するハブページです。各サブドメインをカード形式で表示し、名前・カテゴリ・スクリーンショットからリンク先を確認できます。
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org) (App Router)
+- [Vite+](https://voidzero.dev) - Vite / Rolldown / Vitest / tsdown / Oxlint / Oxfmt をまとめたツールチェーン (`vp` CLI)
+- [Panda CSS](https://panda-css.com) - スタイリング
+- [valibot](https://valibot.dev) - データスキーマのバリデーション
+- [Storybook](https://storybook.js.org)
+- [Cloudflare Pages](https://pages.cloudflare.com) ([OpenNext](https://opennext.js.org) 経由でデプロイ)
 
 ## Getting Started
 
-First, run the development server:
+### 開発環境（Nix）
+
+このプロジェクトは [Nix](https://nixos.org) の devShell（`flake.nix`）で `vp` (Vite+) や `gitleaks` などの開発ツールを管理しています。[direnv](https://direnv.net) を導入し、リポジトリ直下で以下を実行してください。
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+direnv allow
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+これにより `.envrc`（`use flake`）を通じて devShell が自動的に読み込まれます。direnv を使わない場合は、都度以下で devShell に入ってください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+nix develop
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> devShell に入っていない場合、`vp` や pre-commit フックが利用するツールが見つからずコマンドが失敗することがあります。
 
-## Learn More
+### インストール・起動
 
-To learn more about Next.js, take a look at the following resources:
+依存関係のインストール:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+vp install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+開発サーバーの起動:
 
-## Deploy on Vercel
+```bash
+vp dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[http://localhost:3000](http://localhost:3000) で確認できます。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## サブドメインの追加
+
+`src/data/subdomains.json` にエントリを追加します。
+
+```json
+{
+  "id": "example",
+  "name": "Example",
+  "url": "https://example.hol1kgmg.com",
+  "category": "dev",
+  "screenshot": "/screenshots/example.jpg"
+}
+```
+
+- `category` は `src/data/categories.ts` で定義されている値（`dev` / `tool` / `media`）から選択します。
+- `screenshot` は任意で、`public/screenshots/` 配下の画像パスを指定します。
+- データは `src/data/subdomains.ts` で valibot によりスキーマ検証されます。
+
+## 主なコマンド
+
+```bash
+vp dev          # 開発サーバー起動
+vp build        # 本番ビルド
+vp check        # フォーマット・lint・型チェック
+vp test         # テスト実行
+vp run storybook # Storybook 起動
+```
+
+## Cloudflare Pages へのデプロイ
+
+```bash
+pnpm build:cf    # OpenNext でビルド
+pnpm deploy:cf   # ビルド + デプロイ
+pnpm preview:cf  # wrangler dev でプレビュー
+```
