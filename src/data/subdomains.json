@@ -12,5 +12,12 @@
     "url": "https://braille-finder.hol1kgmg.com",
     "category": "tool",
     "screenshot": "/screenshots/braille-finder.jpg"
+  },
+  {
+    "id": "talks",
+    "name": "Talks",
+    "url": "https://talks.hol1kgmg.com",
+    "category": "media",
+    "screenshot": "/screenshots/talks.jpg"
   }
 ]
