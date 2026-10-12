@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#0a0a0a"/>
-  <text x="16" y="23" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="20" font-weight="bold">H</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#FAF4ED"/>
+  <path transform="translate(16 16) scale(20)" fill="#7390A1" d="M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h6l2 2h8q.825 0 1.413.588T22 8v10q0 .825-.587 1.413T20 20z"/>
+  <text x="256" y="350" text-anchor="middle" fill="#FAF4ED" font-family="ui-sans-serif, system-ui, sans-serif" font-size="200" font-weight="700">H</text>
 </svg>
