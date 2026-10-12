@@ -1,2 +1,2 @@
-vp staged
+(cd web && vp staged)
 gitleaks git --pre-commit --redact --staged --verbose

@@ -1,6 +1,6 @@
 # This is NOT the Next.js you know
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `web/node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 
 # Using Vite+, the Unified Toolchain for the Web
 
@@ -85,7 +85,7 @@ For GitHub Actions, consider using [`voidzero-dev/setup-vp`](https://github.com/
 
 # Project Overview
 
-A terminal-styled profile page. A simple static web application contained in a single `index.html` file. Displays personal information such as name, skills, and background in a command-line interface style.
+A hub page listing the subdomains under `hol1kgmg.com`. The Next.js app lives in `web/`; run all `vp` commands from that directory. The repository root holds only tooling: `flake.nix`, `.github/`, `.claude/`, `nix/`.
 
 ## Rules and Skills Structure
 
@@ -127,6 +127,6 @@ _Note: Rules will be added as the project evolves._
 
 # Review Checklist for Agents
 
-- [ ] Run `vp install` after pulling remote changes and before getting started.
+- [ ] Run `cd web && vp install` after pulling remote changes and before getting started.
 - [ ] Run `vp check` and `vp test` to validate changes.
 - [ ] After completing a React/Next.js implementation task, invoke the `/react-doctor` skill to review for issues before considering the task done.

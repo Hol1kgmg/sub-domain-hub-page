@@ -31,6 +31,12 @@ nix develop
 
 ### インストール・起動
 
+アプリ本体は `web/` 配下にあります。以降のコマンドは `web/` で実行してください。
+
+```bash
+cd web
+```
+
 依存関係のインストール:
 
 ```bash
@@ -47,7 +53,7 @@ vp dev
 
 ## サブドメインの追加
 
-`src/data/subdomains.json` にエントリを追加します。
+`web/src/data/subdomains.json` にエントリを追加します。
 
 ```json
 {
@@ -59,11 +65,13 @@ vp dev
 }
 ```
 
-- `category` は `src/data/categories.ts` で定義されている値（`dev` / `tool` / `media`）から選択します。
-- `screenshot` は任意で、`public/screenshots/` 配下の画像パスを指定します。
-- データは `src/data/subdomains.ts` で valibot によりスキーマ検証されます。
+- `category` は `web/src/data/categories.ts` で定義されている値（`dev` / `tool` / `media`）から選択します。
+- `screenshot` は任意で、`web/public/screenshots/` 配下の画像パスを指定します。
+- データは `web/src/data/subdomains.ts` で valibot によりスキーマ検証されます。
 
 ## 主なコマンド
+
+`web/` で実行します。
 
 ```bash
 vp dev          # 開発サーバー起動
@@ -74,6 +82,8 @@ vp run storybook # Storybook 起動
 ```
 
 ## Cloudflare Pages へのデプロイ
+
+Cloudflare Pages のビルド設定では「ルートディレクトリ」を `web` にしてください。ローカルからは `web/` で以下を実行します。
 
 ```bash
 pnpm build:cf    # OpenNext でビルド

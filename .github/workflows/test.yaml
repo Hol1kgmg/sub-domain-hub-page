@@ -13,6 +13,9 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: read
+    defaults:
+      run:
+        working-directory: web
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -26,7 +29,7 @@ jobs:
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: playwright-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}
       - run: vp exec playwright install --with-deps chromium
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - run: vp exec playwright install-deps chromium
