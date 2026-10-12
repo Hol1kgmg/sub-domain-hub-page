@@ -27,7 +27,7 @@ export default async function Home() {
           color: 'text',
         })}
       >
-        Hol1kgmg Subdomain List
+        Hol1kgmg Portfolio
       </h1>
       <SubdomainList cards={cards} />
     </main>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hol1kgmg Portfolio</title>
+    <style>
+      :root {
+        --bg: #faf4ed;
+        --title: #575279;
+        --folder-1: #7390a1;
+        --folder-2: #8574a3;
+        --folder-3: #a67780;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px 16px;
+        background: var(--bg);
+        font-family: 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif;
+      }
+
+      /* ===== リンクカード本体 ===== */
+      .link-card {
+        display: flex;
+        flex-direction: column; /* ロゴ ↓ フォルダ */
+        align-items: center;
+        gap: 28px;
+        width: 100%;
+        max-width: 520px;
+        padding: 32px 24px;
+        background: var(--bg);
+        border: 1px solid color-mix(in srgb, var(--title) 15%, transparent);
+        border-radius: 16px;
+        text-decoration: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+      .link-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px color-mix(in srgb, var(--title) 15%, transparent);
+      }
+
+      /* ===== 上段:ロゴ ===== */
+      .logo {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        color: var(--title);
+        text-align: center;
+      }
+
+      /* ===== 下段:フォルダ3つ ===== */
+      .folders {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end; /* 開いたフォルダと底をそろえる */
+        gap: 28px;
+      }
+      .folders svg {
+        width: 72px;
+        height: 59px;
+        overflow: visible;
+      }
+      .folders svg.open {
+        width: 80px;
+        height: 80px; /* viewBox 576x572 に合わせた高さ */
+      }
+
+      @media (max-width: 380px) {
+        .logo {
+          font-size: 21px;
+        }
+        .folders {
+          gap: 18px;
+        }
+        .folders svg {
+          width: 56px;
+          height: 46px;
+        }
+        .folders svg.open {
+          height: 58px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      class="link-card"
+      href="https://hol1kgmg.com/"
+      target="_blank"
+      rel="noopener"
+      aria-label="Hol1kgmg Portfolio"
+    >
+      <h1 class="logo">Hol1kgmg Portfolio</h1>
+
+      <div class="folders" aria-hidden="true">
+        <svg viewBox="0 0 56 46">
+          <path
+            d="M4 8a4 4 0 0 1 4-4h14l5 5h21a4 4 0 0 1 4 4v25a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"
+            fill="var(--folder-1)"
+          />
+          <path
+            d="M4 16h48v22a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"
+            fill="var(--folder-1)"
+            opacity=".75"
+          />
+        </svg>
+
+        <!-- 真ん中:開いたフォルダ -->
+        <svg class="open" viewBox="0 0 576 512">
+          <!-- 奥側(タブ付き背面) -->
+          <path
+            d="M88.7 223.8L0 375.8V96c0-35.3 28.7-64 64-64h117.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7L416 96c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8z"
+            fill="var(--folder-2)"
+          />
+
+          <!-- 手前側(開いた前面フラップ) -->
+          <path
+            d="M116.3 239.9c5.8-9.9 16.3-15.9 27.7-15.9h400c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2.1-32.1l112-192z"
+            style="fill: color-mix(in srgb, var(--folder-2) 78%, white)"
+          />
+        </svg>
+
+        <svg viewBox="0 0 56 46">
+          <path
+            d="M4 8a4 4 0 0 1 4-4h14l5 5h21a4 4 0 0 1 4 4v25a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"
+            fill="var(--folder-3)"
+          />
+          <path
+            d="M4 16h48v22a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"
+            fill="var(--folder-3)"
+            opacity=".75"
+          />
+        </svg>
+      </div>
+    </a>
+  </body>
+</html>
