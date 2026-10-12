@@ -20,6 +20,14 @@ export default defineConfig({
       {
         extends: true,
         test: {
+          name: 'node',
+          environment: 'node',
+          include: ['src/**/*.node.test.ts'],
+        },
+      },
+      {
+        extends: true,
+        test: {
           name: 'browser',
           browser: {
             enabled: true,
@@ -33,6 +41,7 @@ export default defineConfig({
             ],
           },
           include: ['src/**/*.test.{ts,tsx}'],
+          exclude: ['src/**/*.node.test.ts'],
           includeSource: ['src/**/*.{ts,tsx}'],
         },
       },

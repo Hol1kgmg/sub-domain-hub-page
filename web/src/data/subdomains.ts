@@ -9,6 +9,7 @@ const SubdomainSchema = object({
   url: string(),
   category: CategorySchema,
   screenshot: optional(string()),
+  ogImage: optional(string()),
 });
 
 export type Subdomain = InferOutput<typeof SubdomainSchema>;

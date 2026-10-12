@@ -10,7 +10,7 @@ type Props = {
 export function SubdomainCard({ subdomain }: Props) {
   return (
     <a
-      className={css({
+      className={`group ${css({
         display: 'block',
         borderRadius: '8px',
         border: '1px solid',
@@ -24,12 +24,67 @@ export function SubdomainCard({ subdomain }: Props) {
           borderColor: 'highlight-high',
           background: 'overlay',
         },
-      })}
+      })}`}
       href={subdomain.url}
       rel="noopener noreferrer"
       target="_blank"
     >
-      {subdomain.screenshot ? (
+      {subdomain.screenshot && subdomain.ogImage ? (
+        <div
+          className={css({
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16/9',
+            overflow: 'hidden',
+            background: 'overlay',
+            borderBottom: '1px solid',
+            borderColor: 'highlight-med',
+          })}
+        >
+          <Image
+            alt=""
+            className={css({
+              position: 'absolute',
+              top: '14%',
+              left: '14%',
+              width: '78%',
+              height: '78%',
+              objectFit: 'cover',
+              borderRadius: '4px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+              transform: 'rotate(3deg)',
+              transition: 'transform 0.3s ease',
+              _groupHover: { transform: 'translate(6%, -10%) rotate(8deg)' },
+              _motionReduce: { transition: 'none' },
+            })}
+            height={360}
+            sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 26vw"
+            src={subdomain.ogImage}
+            width={640}
+          />
+          <Image
+            alt={subdomain.name}
+            className={css({
+              position: 'absolute',
+              top: '8%',
+              left: '8%',
+              width: '78%',
+              height: '78%',
+              objectFit: 'cover',
+              borderRadius: '4px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+              transform: 'rotate(-2deg)',
+              transition: 'transform 0.3s ease',
+              _groupHover: { transform: 'translate(-6%, -12%) rotate(-7deg)' },
+              _motionReduce: { transition: 'none' },
+            })}
+            height={360}
+            sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 26vw"
+            src={subdomain.screenshot}
+            width={640}
+          />
+        </div>
+      ) : subdomain.screenshot ? (
         <div
           className={css({
             position: 'relative',
