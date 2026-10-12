@@ -70,6 +70,7 @@ export function SubdomainCard({ subdomain, ogImage }: Props) {
         label={subdomain.name}
         openScale={1.8}
         size={1.44}
+        zoomOnClick={(index) => index !== LINK_CARD_INDEX}
         onItemClick={(_, index) => {
           if (index === LINK_CARD_INDEX) window.open(subdomain.url, '_blank', 'noopener');
         }}

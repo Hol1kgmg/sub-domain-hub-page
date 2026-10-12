@@ -50,7 +50,8 @@ export interface FolderProps {
   onItemClick?: (item: FolderEntry, index: number) => void;
   onItemDrop?: (item: FolderEntry, index: number, inside: boolean) => void;
   draggable?: boolean;
-  zoomOnClick?: boolean;
+  // 追加 (upstream には無い): 関数ならアイテムごとにズーム可否を判定
+  zoomOnClick?: boolean | ((index: number) => boolean);
   peek?: boolean;
   intro?: boolean;
   tilt?: number;
@@ -246,7 +247,7 @@ interface Settings {
   peek: boolean;
   intro: boolean;
   draggable: boolean;
-  zoomOnClick: boolean;
+  zoomOnClick: boolean | ((index: number) => boolean);
   closeOnOutsideClick: boolean;
   onItemClick?: (item: FolderEntry, index: number) => void;
   onItemDrop?: (item: FolderEntry, index: number, inside: boolean) => void;
@@ -2218,7 +2219,8 @@ const Folder = ({
         settingsRef.current.open || state.items[index]?.place === 'out' || state.focus === index,
       select: (index) => {
         const s = settingsRef.current;
-        if (s.zoomOnClick) state.focus = state.focus === index ? -1 : index;
+        const zoom = typeof s.zoomOnClick === 'function' ? s.zoomOnClick(index) : s.zoomOnClick;
+        if (zoom) state.focus = state.focus === index ? -1 : index;
         s.onItemClick?.(s.entries[index], index);
         wake();
       },
