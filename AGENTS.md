@@ -1,3 +1,11 @@
+# Project Overview
+
+A hub page listing the subdomains under `hol1kgmg.com`. The Next.js app lives in `web/`; run all `vp` commands from that directory. The repository root holds only tooling: `flake.nix`, `justfile`, `registry/`, `skills.nix`, `rules.nix`, `.github/`, `.claude/`.
+
+# Setup and Basic Usage
+
+Setup instructions and basic usage are documented in [README.md](./README.md).
+
 # This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `web/node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
@@ -83,46 +91,45 @@ For GitHub Actions, consider using [`voidzero-dev/setup-vp`](https://github.com/
 - run: vp test
 ```
 
-# Project Overview
+# Rules and Skills
 
-A hub page listing the subdomains under `hol1kgmg.com`. The Next.js app lives in `web/`; run all `vp` commands from that directory. The repository root holds only tooling: `flake.nix`, `.github/`, `.claude/`, `nix/`.
-
-## Rules and Skills Structure
-
-- **Rules** (`.claude/rules/`): Automatically loaded based on file paths. Source of truth for project conventions.
-- **Skills** (`.claude/skills/`): Manually invoked for specific integrations.
-
-## Available Rules
-
-| Rule | Applies To | Description |
-| ---- | ---------- | ----------- |
-
-_Note: Rules will be added as the project evolves._
-
-## Available Skills
-
-| Skill | When to Use |
-| ----- | ----------- |
+- **Rules** (`.claude/rules/` → `.agents/rules`): Declared in `rules.nix`, synced by the devShell. Source of truth for project conventions. Repository-specific rules live in `rules/`.
+- **Skills** (`.claude/skills/` → `.agents/skills`): Declared in `skills.nix`, synced by the devShell. Repository-specific skills live in `skills/`.
 
 # Work Rules
 
 1. Propose implementation plan
-1. Wait for approval
-1. Start implementation
+2. Wait for approval
+3. Start implementation
+
+# Comment Policy
+
+- コードには How
+- テストコードには What
+- コミットログには Why
+- コードコメントには Why not
+
+コードコメントの細則:
+
+- コードから読み取れない理由 (why / why not) だけを書く。何をするか・どう動くかの説明は書かない。
+- 書く前に「この行を消してもコードから分かるか」を確認し、分かるなら書かない。
+- 残すのは背景や制約: 外部ライブラリの仕様、ブラウザ互換、過去の不具合の再発防止など。
+- 1 行に収める。長くなるなら設計の問題なのでコードを直す。
 
 # Tool Usage Policy
 
-**Always use dedicated tools for file operations:**
+**Prefer dedicated tools for file operations by default** (not enforced via `permissions.deny` — occasional Bash use is fine when it's genuinely more convenient):
 
-- File reading → `Read` tool
-- File search → `Glob` tool
-- Content search → `Grep` tool
-- File editing → `Edit` tool
+- `ls`, `find` → `Glob` tool
+- `cat`, `head`, `tail` → `Read` tool
+- `grep` → `Grep` tool
+- `sed`, `awk` → `Edit` tool
 - File writing → `Write` tool
+- `curl` → `WebFetch` tool
 
 # Language Settings
 
-- Responses: Japanese
+- Responses: `.claude/settings.json` - `language`
 - Thinking: English (for token reduction)
 
 # Review Checklist for Agents

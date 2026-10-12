@@ -1,0 +1,40 @@
+# 有効にするスキル ID の宣言ファイル。
+#
+# 取得元は registry/sources/*.nix（rev は registry/sources.lock.json に固定）。
+# ID 一覧は `just skills-list` で確認できる。不要なものは行ごと消す。
+[
+  # anthropics/skills
+  "frontend-design"
+  "skill-creator"
+  "webapp-testing"
+
+  # vercel/ai
+  "adr-skill"
+
+  # vercel-labs/agent-skills
+  "composition-patterns"
+  "react-best-practices"
+  "react-view-transitions"
+  "web-design-guidelines"
+
+  # millionco/react-doctor
+  "react-doctor"
+
+  # gist
+  "cognitive-rhythm-writing"
+  "japanese-tech-writing"
+
+  # addyosmani/web-quality-skills
+  "web-quality-audit"
+  "performance"
+  "core-web-vitals"
+  "accessibility"
+  "seo"
+  "best-practices"
+
+  # Hol1kgmg/skills（必要なリポジトリで有効化する）
+  # "dependabot-review"
+  # "speckit-explain"
+
+  # ./skills（独自）
+]
