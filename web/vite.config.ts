@@ -49,7 +49,15 @@ export default defineConfig({
     env: {
       builtin: true,
     },
-    ignorePatterns: ['.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'styled-system'],
+    ignorePatterns: [
+      '.next/**',
+      'out/**',
+      'build/**',
+      'next-env.d.ts',
+      'styled-system',
+      // React Bits からの vendored コード。strictest 設定に合わせた改変は上流追従を壊すため lint 対象外
+      'src/components/Folder/**',
+    ],
     rules: {
       'no-array-constructor': 'error',
       'no-unused-expressions': 'warn',

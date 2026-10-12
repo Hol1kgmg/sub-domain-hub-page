@@ -1,4 +1,4 @@
-import { array, object, optional, parse, string, type InferOutput } from 'valibot';
+import { array, object, parse, string, type InferOutput } from 'valibot';
 
 import { CategorySchema } from './categories';
 import subdomainsJson from './subdomains.json';
@@ -8,8 +8,7 @@ const SubdomainSchema = object({
   name: string(),
   url: string(),
   category: CategorySchema,
-  screenshot: optional(string()),
-  ogImage: optional(string()),
+  screenshot: string(),
 });
 
 export type Subdomain = InferOutput<typeof SubdomainSchema>;

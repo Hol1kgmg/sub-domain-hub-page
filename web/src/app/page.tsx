@@ -1,9 +1,16 @@
 import { css } from '../../styled-system/css';
-import { grid } from '../../styled-system/patterns';
-import { SubdomainCard } from '../components/SubdomainCard';
+import { SubdomainList } from '../components/SubdomainList';
+import { fetchOgImage } from '../data/og';
 import { subdomains } from '../data/subdomains';
 
-export default function Home() {
+export default async function Home() {
+  const cards = await Promise.all(
+    subdomains.map(async (subdomain) => ({
+      subdomain,
+      ogImage: await fetchOgImage(subdomain.url),
+    })),
+  );
+
   return (
     <main
       className={css({
@@ -20,18 +27,9 @@ export default function Home() {
           color: 'text',
         })}
       >
-        Subdomain List
+        Hol1kgmg Subdomain List
       </h1>
-      <div
-        className={grid({
-          columns: { base: 1, sm: 2, lg: 3 },
-          gap: '4',
-        })}
-      >
-        {subdomains.map((subdomain) => (
-          <SubdomainCard key={subdomain.id} subdomain={subdomain} />
-        ))}
-      </div>
+      <SubdomainList cards={cards} />
     </main>
   );
 }
