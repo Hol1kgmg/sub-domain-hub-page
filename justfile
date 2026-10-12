@@ -61,3 +61,39 @@ scan-staged:
 # Serve markdown at http://localhost:8080
 docs *ARGS:
     markserv . -p 8080 -a 0.0.0.0 --browser=false {{ARGS}}
+
+# Install web dependencies
+install:
+    cd web && vp install
+
+# Run Next.js dev server
+dev *ARGS:
+    cd web && vp run dev {{ARGS}}
+
+# Build for production
+build:
+    cd web && vp run build
+
+# Serve production build
+start:
+    cd web && vp run start
+
+# Run format, lint, and type checks
+check:
+    cd web && vp check
+
+# Run tests
+test *ARGS:
+    cd web && vp test {{ARGS}}
+
+# Run Storybook at http://localhost:6006
+storybook:
+    cd web && vp run storybook
+
+# Deploy to Cloudflare
+deploy:
+    cd web && vp run deploy:cf
+
+# Preview Cloudflare build locally
+preview:
+    cd web && vp run preview:cf
