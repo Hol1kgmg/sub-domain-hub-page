@@ -3,21 +3,24 @@
     "id": "terminal-profile",
     "name": "Terminal Profile",
     "url": "https://terminal.hol1kgmg.com",
-    "category": "dev",
-    "screenshot": "/screenshots/terminal-profile.jpg"
+    "category": "dev"
   },
   {
     "id": "braille-finder",
     "name": "Braille Finder",
     "url": "https://braille-finder.hol1kgmg.com",
-    "category": "tool",
-    "screenshot": "/screenshots/braille-finder.jpg"
+    "category": "tool"
   },
   {
     "id": "talks",
     "name": "Talks",
     "url": "https://talks.hol1kgmg.com",
-    "category": "media",
-    "screenshot": "/screenshots/talks.jpg"
+    "category": "media"
+  },
+  {
+    "id": "card-link-checker",
+    "name": "Card Link Checker",
+    "url": "https://card-link-checker.hol1kgmg.com",
+    "category": "tool"
   }
 ]

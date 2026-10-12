@@ -86,6 +86,13 @@ check:
 test *ARGS:
     cd web && vp test {{ARGS}}
 
+# Copy a .jpg into web/public/screenshots as {ID}.jpg (ID = subdomain id)
+image SRC ID:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    [[ "{{SRC}}" == *.jpg ]] || { echo "error: only .jpg is accepted" >&2; exit 1; }
+    cp "{{SRC}}" "web/public/screenshots/{{ID}}.jpg"
+
 # Run Storybook at http://localhost:6006
 storybook:
     cd web && vp run storybook
