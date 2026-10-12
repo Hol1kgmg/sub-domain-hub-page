@@ -86,12 +86,12 @@ check:
 test *ARGS:
     cd web && vp test {{ARGS}}
 
-# Copy a .jpg into web/public/screenshots as {ID}.jpg (ID = subdomain id)
-image SRC ID:
+# Copy a .jpg into web/public/screenshots (optionally renamed)
+image SRC NAME="":
     #!/usr/bin/env bash
     set -euo pipefail
     [[ "{{SRC}}" == *.jpg ]] || { echo "error: only .jpg is accepted" >&2; exit 1; }
-    cp "{{SRC}}" "web/public/screenshots/{{ID}}.jpg"
+    cp "{{SRC}}" "web/public/screenshots/{{ if NAME == "" { file_name(SRC) } else { NAME } }}"
 
 # Run Storybook at http://localhost:6006
 storybook:
