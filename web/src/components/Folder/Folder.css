@@ -12,6 +12,11 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* .folder-stage の isolation で隣のフォルダに潜るので、開いたものを手前に出す */
+.folder-root[data-open] {
+  z-index: 1;
+}
+
 .folder-root[data-theme='light'] {
   --folder-ground: rgba(24, 22, 40, 0.16);
   --folder-ground-soft: rgba(24, 22, 40, 0.1);

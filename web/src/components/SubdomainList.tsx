@@ -43,7 +43,7 @@ export function SubdomainList({ cards }: Props) {
         onChange={(e) => setQuery(e.target.value)}
       />
       {hits === 0 && <p className={css({ color: 'muted' })}>見つかりません</p>}
-      <div className={grid({ columns: { base: 1, sm: 2 }, columnGap: '10', rowGap: '16' })}>
+      <div className={grid({ columns: { base: 1, md: 2 }, columnGap: '10', rowGap: '16' })}>
         {cards.map(({ subdomain, ogImage }) => (
           // unmount すると Folder のエンジンと intro アニメーションが再生されるので hidden で隠す
           <div key={subdomain.id} hidden={!matches(subdomain)}>

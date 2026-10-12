@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 import { css } from '../../styled-system/css';
 import { categoryColors } from '../data/categories';
@@ -10,6 +11,16 @@ import type { Subdomain } from '../data/subdomains';
 const Folder = dynamic(() => import('./Folder/Folder'), { ssr: false });
 
 const LINK_CARD_INDEX = 1;
+const MAX_SIZE = 1.44;
+const CARD_WIDTH = 0.6;
+const OPEN_SCALE = 1.8;
+const CARD_COUNT = 2;
+// Folder.tsx measureFolder / placeFlap の flap 基準値 (size = 1 のときの px)
+const FOLDER_WIDTH = 224;
+const OPEN_GAP = 12;
+// 開いたカード列の幅 (size = 1 のとき)。これが最大表示なのでセル幅に収まる size を逆算する
+const OPEN_WIDTH =
+  FOLDER_WIDTH * CARD_WIDTH * 0.94 * OPEN_SCALE * CARD_COUNT + OPEN_GAP * (CARD_COUNT - 1);
 
 type Props = {
   subdomain: Subdomain;
@@ -42,13 +53,32 @@ const overlay = css({
   _motionReduce: { transition: 'none' },
 });
 
+const useFolderSize = (ref: React.RefObject<HTMLDivElement | null>) => {
+  const [size, setSize] = useState(MAX_SIZE);
+  useLayoutEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+    const update = (width: number) => {
+      // 検索で hidden になると幅 0 になるので前回の size を保つ
+      if (width > 0) setSize(Math.min(MAX_SIZE, width / OPEN_WIDTH));
+    };
+    update(node.getBoundingClientRect().width);
+    const observer = new ResizeObserver(() => update(node.getBoundingClientRect().width));
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [ref]);
+  return size;
+};
+
 export function SubdomainCard({ subdomain, ogImage }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+  const size = useFolderSize(ref);
   return (
-    <div className={css({ display: 'flex', justifyContent: 'center', paddingTop: '8' })}>
+    <div ref={ref} className={css({ display: 'flex', justifyContent: 'center', paddingTop: '8' })}>
       <Folder
         badge={subdomain.category}
         cardRatio={9 / 16}
-        cardWidth={0.6}
+        cardWidth={CARD_WIDTH}
         color={categoryColors[subdomain.category]}
         items={[
           { image: subdomain.screenshot, alt: subdomain.name },
@@ -68,8 +98,8 @@ export function SubdomainCard({ subdomain, ogImage }: Props) {
           },
         ]}
         label={subdomain.name}
-        openScale={1.8}
-        size={1.44}
+        openScale={OPEN_SCALE}
+        size={size}
         zoomOnClick={(index) => index !== LINK_CARD_INDEX}
         onItemClick={(_, index) => {
           if (index === LINK_CARD_INDEX) window.open(subdomain.url, '_blank', 'noopener');
